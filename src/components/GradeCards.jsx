@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
 
 const grades = [
@@ -9,7 +10,7 @@ const grades = [
   { id: 'exam-prep', label: 'Exam Prep', books: 5, students: '30K+', color: '#f97316', image: '/exam-prep-card.svg' },
 ];
 
-export default function GradeCards({ onNavigate }) {
+export default function GradeCards() {
   return (
     <section
       style={{
@@ -68,10 +69,10 @@ export default function GradeCards({ onNavigate }) {
         }}
       >
         {grades.map((g) => (
-          <button
+          <Link
             key={g.id}
+            to={`/books/${g.id}`}
             className="grade-card"
-            onClick={() => onNavigate('books', g.id)}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -83,6 +84,7 @@ export default function GradeCards({ onNavigate }) {
               overflow: 'hidden',
               boxShadow: 'var(--shadow-sm)',
               fontFamily: 'Poppins, sans-serif',
+              textDecoration: 'none',
             }}
           >
             <img
@@ -113,7 +115,7 @@ export default function GradeCards({ onNavigate }) {
                 {g.books} books · {g.students}
               </div>
             </div>
-          </button>
+          </Link>
         ))}
       </div>
     </section>

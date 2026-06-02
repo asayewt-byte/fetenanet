@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Download, TrendingUp } from 'lucide-react';
 
 const textbooks = [
@@ -35,7 +36,7 @@ const textbooks = [
   },
 ];
 
-export default function PopularTextbooks({ onNavigate }) {
+export default function PopularTextbooks() {
   return (
     <section
       style={{
@@ -64,8 +65,9 @@ export default function PopularTextbooks({ onNavigate }) {
         }}
       >
         {textbooks.map((book) => (
-          <div
+          <Link
             key={book.subject}
+            to={`/books/${book.gradeId}`}
             style={{
               borderRadius: 16,
               background: 'var(--bg-card)',
@@ -73,10 +75,10 @@ export default function PopularTextbooks({ onNavigate }) {
               boxShadow: 'var(--shadow-sm)',
               cursor: 'pointer',
               overflow: 'hidden',
+              textDecoration: 'none',
+              color: 'inherit',
             }}
-            onClick={() => onNavigate('books', book.gradeId)}
           >
-            {/* Book cover */}
             <div
               style={{
                 width: '100%',
@@ -122,7 +124,7 @@ export default function PopularTextbooks({ onNavigate }) {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

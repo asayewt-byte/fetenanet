@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import SEO from './SEO';
 
 const slides = [
   {
@@ -24,7 +26,7 @@ const headlines = [
   { en: 'Your Future Starts Here', am: 'ወደፊትህ እዚህ ይጀምራል' },
 ];
 
-export default function Hero({ onNavigate }) {
+export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [headlineIndex, setHeadlineIndex] = useState(0);
   const [isAmharic, setIsAmharic] = useState(false);
@@ -182,8 +184,8 @@ export default function Hero({ onNavigate }) {
 
         {/* BUTTONS BELOW */}
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button
-            onClick={() => onNavigate('books')}
+          <Link
+            to="/books"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -197,16 +199,15 @@ export default function Hero({ onNavigate }) {
               fontWeight: 600,
               cursor: 'pointer',
               fontFamily: 'Poppins, sans-serif',
+              textDecoration: 'none',
             }}
           >
             Browse Textbooks
             <ArrowRight size={18} />
-          </button>
+          </Link>
 
-          <button
-            onClick={() => {
-              document.querySelector('#roadmap')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+          <Link
+            to="/#roadmap"
             style={{
               padding: '14px 28px',
               borderRadius: 12,
@@ -217,10 +218,11 @@ export default function Hero({ onNavigate }) {
               fontWeight: 600,
               cursor: 'pointer',
               fontFamily: 'Poppins, sans-serif',
+              textDecoration: 'none',
             }}
           >
             View Roadmap
-          </button>
+          </Link>
         </div>
       </div>
     </section>

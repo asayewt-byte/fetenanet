@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { Clock, Zap, FileText, Video } from 'lucide-react';
 
 function useCountdown(targetMs) {
@@ -23,7 +24,7 @@ function useCountdown(targetMs) {
   return time;
 }
 
-export default function ExamPrepBanner({ onNavigate }) {
+export default function ExamPrepBanner() {
   const examDateMs = useMemo(() => new Date('2026-05-15T08:00:00').getTime(), []);
   const { days, hours, minutes, seconds } = useCountdown(examDateMs);
 
@@ -124,9 +125,10 @@ export default function ExamPrepBanner({ onNavigate }) {
             ))}
           </div>
 
-          <button
-            onClick={() => onNavigate('books', 'exam-prep')}
+          <Link
+            to="/books/exam-prep"
             style={{
+              display: 'inline-block',
               background: 'white',
               color: '#0f766e',
               border: 'none',
@@ -136,12 +138,12 @@ export default function ExamPrepBanner({ onNavigate }) {
               fontWeight: 700,
               cursor: 'pointer',
               fontFamily: 'Poppins, sans-serif',
-              width: '100%',
               maxWidth: 280,
+              textDecoration: 'none',
             }}
           >
             Start Preparing Now →
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -91,6 +91,8 @@ export default function PopularTextbooks({ onNavigate }) {
               <img
                 src={book.cover}
                 alt={`${book.subject} ${book.grade}`}
+                width={170}
+                height={225}
                 loading="lazy"
                 decoding="async"
                 style={{

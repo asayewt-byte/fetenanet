@@ -13,26 +13,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const isHome = location.pathname === '/';
-
   const links = [
     { label: 'Home', to: '/' },
-    { label: 'Roadmap', to: '/#roadmap' },
     { label: 'Books', to: '/books' },
   ];
-
-  const handleNav = (to) => {
-    setOpen(false);
-    if (to === '/#roadmap') {
-      if (!isHome) {
-        window.location.href = to;
-      } else {
-        setTimeout(() => {
-          document.querySelector('#roadmap')?.scrollIntoView({ behavior: 'smooth' });
-        }, 50);
-      }
-    }
-  };
 
   return (
     <nav
@@ -112,49 +96,27 @@ export default function Navbar() {
       {/* Desktop Links */}
       <div style={{ display: 'flex', gap: 4, alignItems: 'center' }} className="desktop-nav">
         {links.map((l) => (
-          l.to === '/#roadmap' ? (
-            <button
-              key={l.label}
-              onClick={() => handleNav(l.to)}
-              aria-label={`Navigate to ${l.label}`}
-              style={{
-                padding: '8px 14px',
-                borderRadius: 10,
-                border: 'none',
-                background: 'transparent',
-                color: 'var(--text-secondary)',
-                fontWeight: 500,
-                fontSize: 13,
-                cursor: 'pointer',
-                transition: 'color 200ms ease-out, background 200ms ease-out',
-                fontFamily: 'Open Sans, sans-serif',
-              }}
-            >
-              {l.label}
-            </button>
-          ) : (
-            <Link
-              key={l.label}
-              to={l.to}
-              aria-label={`Navigate to ${l.label}`}
-              style={{
-                padding: '8px 14px',
-                borderRadius: 10,
-                border: 'none',
-                background: location.pathname === l.to ? 'rgba(13,148,136,0.1)' : 'transparent',
-                color: 'var(--text-secondary)',
-                fontWeight: 500,
-                fontSize: 13,
-                cursor: 'pointer',
-                transition: 'color 200ms ease-out, background 200ms ease-out',
-                fontFamily: 'Open Sans, sans-serif',
-                textDecoration: 'none',
-                display: 'inline-block',
-              }}
-            >
-              {l.label}
-            </Link>
-          )
+          <Link
+            key={l.label}
+            to={l.to}
+            aria-label={`Navigate to ${l.label}`}
+            style={{
+              padding: '8px 14px',
+              borderRadius: 10,
+              border: 'none',
+              background: location.pathname === l.to ? 'rgba(13,148,136,0.1)' : 'transparent',
+              color: 'var(--text-secondary)',
+              fontWeight: 500,
+              fontSize: 13,
+              cursor: 'pointer',
+              transition: 'color 200ms ease-out, background 200ms ease-out',
+              fontFamily: 'Open Sans, sans-serif',
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}
+          >
+            {l.label}
+          </Link>
         ))}
         <ThemeToggle />
       </div>
@@ -206,50 +168,28 @@ export default function Navbar() {
           }}
         >
           {links.map((l) => (
-            l.to === '/#roadmap' ? (
-              <button
-                key={l.label}
-                onClick={() => handleNav(l.to)}
-                aria-label={`Navigate to ${l.label}`}
-                style={{
-                  padding: '12px 14px',
-                  borderRadius: 12,
-                  border: 'none',
-                  background: 'transparent',
-                  color: 'var(--text-secondary)',
-                  fontWeight: 500,
-                  fontSize: 15,
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  fontFamily: 'Open Sans, sans-serif',
-                }}
-              >
-                {l.label}
-              </button>
-            ) : (
-              <Link
-                key={l.label}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                aria-label={`Navigate to ${l.label}`}
-                style={{
-                  padding: '12px 14px',
-                  borderRadius: 12,
-                  border: 'none',
-                  background: location.pathname === l.to ? 'rgba(13,148,136,0.1)' : 'transparent',
-                  color: 'var(--text-secondary)',
-                  fontWeight: 500,
-                  fontSize: 15,
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  fontFamily: 'Open Sans, sans-serif',
-                  textDecoration: 'none',
-                  display: 'block',
-                }}
-              >
-                {l.label}
-              </Link>
-            )
+            <Link
+              key={l.label}
+              to={l.to}
+              onClick={() => setOpen(false)}
+              aria-label={`Navigate to ${l.label}`}
+              style={{
+                padding: '12px 14px',
+                borderRadius: 12,
+                border: 'none',
+                background: location.pathname === l.to ? 'rgba(13,148,136,0.1)' : 'transparent',
+                color: 'var(--text-secondary)',
+                fontWeight: 500,
+                fontSize: 15,
+                cursor: 'pointer',
+                textAlign: 'left',
+                fontFamily: 'Open Sans, sans-serif',
+                textDecoration: 'none',
+                display: 'block',
+              }}
+            >
+              {l.label}
+            </Link>
           ))}
         </div>
       )}

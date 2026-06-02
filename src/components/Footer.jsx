@@ -50,12 +50,12 @@ export default function Footer() {
           {[
             { icon: <Mail size={18} />, label: 'Email' },
             { icon: <MessageCircle size={18} />, label: 'WhatsApp' },
-            { icon: <Send size={18} />, label: 'Telegram' },
+            { icon: <Send size={18} />, label: 'Telegram', href: 'https://t.me/tegene' },
             { icon: <Globe size={18} />, label: 'Website' },
           ].map((social) => (
             <a
               key={social.label}
-              href="#"
+              href={social.href || '#'}
               aria-label={social.label}
               style={{
                 width: 40,
